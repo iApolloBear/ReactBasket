@@ -8,13 +8,26 @@ export const CheckoutForm = () => {
   const { items } = useAppSelector((state: RootState) => state.basket);
 
   const [cardNumber, setCardNumber] = useState<string>("");
-  const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(luhnCheck(cardNumber));
-    console.log({
-      basket: items.map((item) => ({ sku: item.sku, quantity: item.quantity })),
-      cardNumber,
-    });
+
+    if (luhnCheck(cardNumber)) {
+      const resp = await fetch("http://localhost:9001/checkout", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          basket: items.map((item) => ({
+            sku: item.sku,
+            quantity: item.quantity,
+          })),
+          cardNumber,
+        }),
+      });
+      const body = await resp.json();
+      console.log(body);
+    }
   };
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
