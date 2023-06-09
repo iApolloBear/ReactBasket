@@ -1,7 +1,7 @@
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store";
 
-export const Navbar = () => {
+export const ProductsNavbar = () => {
   const { count, total } = useAppSelector((state: RootState) => state.basket);
 
   return (

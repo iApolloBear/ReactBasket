@@ -1,11 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "../interfaces";
-
-interface BasketItem {
-  product: Product;
-  quantity: number;
-}
+import { BasketItem, Product } from "../interfaces";
 
 interface BasketState {
   items: BasketItem[];
@@ -25,21 +20,21 @@ export const basketSlice = createSlice({
   reducers: {
     addToBasket: (state, action: PayloadAction<Product>) => {
       const existingItem = state.items.find(
-        (item) => item.product.sku === action.payload.sku
+        (item) => item.sku === action.payload.sku
       );
 
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ product: action.payload, quantity: 1 });
+        state.items.push({ ...action.payload, quantity: 1 });
       }
+
       state.count = state.items.reduce(
         (result, current) => (result += current.quantity),
         0
       );
       state.total = state.items.reduce(
-        (result, current) =>
-          (result += current.product.price * current.quantity),
+        (result, current) => (result += current.price * current.quantity),
         0
       );
     },
