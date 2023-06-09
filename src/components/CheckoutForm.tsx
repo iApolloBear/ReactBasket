@@ -26,7 +26,7 @@ export const CheckoutForm = () => {
         }),
       });
       const body = await resp.json();
-      console.log(body);
+      window.alert(body.msg);
     }
   };
 
