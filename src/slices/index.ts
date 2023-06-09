@@ -3,4 +3,5 @@ export {
   addToBasket,
   removeFromBasket,
   removeAllFromBasket,
+  updateItemQuantity,
 } from "./basketSlice";
