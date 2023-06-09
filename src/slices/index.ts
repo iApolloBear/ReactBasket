@@ -1,1 +1,6 @@
-export { basketSlice, addToBasket, removeFromBasket } from "./basketSlice";
+export {
+  basketSlice,
+  addToBasket,
+  removeFromBasket,
+  removeAllFromBasket,
+} from "./basketSlice";

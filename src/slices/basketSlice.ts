@@ -63,7 +63,23 @@ export const basketSlice = createSlice({
         0
       );
     },
+    removeAllFromBasket: (state, action: PayloadAction<BasketItem>) => {
+      const existingItem = state.items.find(
+        (item) => item.sku === action.payload.sku
+      );
+      if (!existingItem) return;
+      state.items = state.items.filter((item) => item.sku !== existingItem.sku);
+      state.count = state.items.reduce(
+        (result, current) => (result += current.quantity),
+        0
+      );
+      state.total = state.items.reduce(
+        (result, current) => (result += current.price * current.quantity),
+        0
+      );
+    },
   },
 });
 
-export const { addToBasket, removeFromBasket } = basketSlice.actions;
+export const { addToBasket, removeFromBasket, removeAllFromBasket } =
+  basketSlice.actions;

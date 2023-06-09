@@ -4,3 +4,4 @@ export { CheckoutNavbar } from "./CheckoutNavbar";
 export { CheckoutList } from "./CheckoutList";
 export { CheckoutItem } from "./CheckoutItem";
 export { CheckoutForm } from "./CheckoutForm";
+export { CheckoutItemSelect } from "./CheckoutItemSelect";
