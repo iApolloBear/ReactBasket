@@ -24,6 +24,7 @@ export const basketSlice = createSlice({
       );
 
       if (existingItem) {
+        if (existingItem.quantity >= action.payload.basketLimit) return;
         existingItem.quantity += 1;
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
