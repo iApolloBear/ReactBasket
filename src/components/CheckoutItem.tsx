@@ -19,7 +19,9 @@ export const CheckoutItem = ({ product }: Props) => {
         </select>
       </td>
       <td className="w-1/8">£{product.price}</td>
-      <td className="w-1/8">£{product.price * product.quantity}</td>
+      <td className="w-1/8">
+        £{(product.price * product.quantity).toFixed(2)}
+      </td>
       <td>
         <button className="text-xs p-2 rounded border border-red-600 bg-red-500 hover:bg-red-700 text-white">
           Remove All

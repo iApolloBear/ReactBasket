@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../hooks";
 import { Product } from "../interfaces";
-import { addToBasket } from "../slices";
+import { addToBasket, removeFromBasket } from "../slices";
 
 interface Props {
   product: Product;
@@ -20,7 +20,10 @@ export const ProductListItem = ({ product }: Props) => {
       >
         Add to Basket
       </button>
-      <button className="text-xs p-2 rounded border border-red-600 bg-red-500 hover:bg-red-700 text-white">
+      <button
+        onClick={() => dispatch(removeFromBasket(product))}
+        className="text-xs p-2 rounded border border-red-600 bg-red-500 hover:bg-red-700 text-white"
+      >
         Remove from Basket
       </button>
     </div>
